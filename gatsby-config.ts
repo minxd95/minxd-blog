@@ -32,6 +32,15 @@ const config: GatsbyConfig = {
       __key: "pages",
     },
     { resolve: "gatsby-plugin-emotion" },
+    {
+      resolve: `gatsby-plugin-alias-imports`,
+      options: {
+        alias: {
+          "@": "./src",
+        },
+        extensions: ["ts", "tsx"],
+      },
+    },
   ],
 };
 

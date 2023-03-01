@@ -1,11 +1,19 @@
-import * as React from "react";
+import { css } from "@emotion/react";
 import Layout from "../components/Layout";
 import "twin.macro";
 
 const IndexPage = () => {
   return (
     <Layout>
-      <span tw="text-red-800">asd</span>
+      <span
+        tw="text-yellow-300"
+        css={css`
+          font-size: 100px;
+        `}
+      >
+        asd
+      </span>
+      <div tw="shadow-2xl w-20 h-20"></div>
     </Layout>
   );
 };

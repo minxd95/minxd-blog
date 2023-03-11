@@ -2,14 +2,13 @@ import { mdiGithub, mdiInstagram, mdiMagnify, mdiTagOutline } from "@mdi/js";
 import Icon from "@mdi/react";
 import { Link } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
-import "twin.macro";
 import tw from "twin.macro";
 
 interface HeaderProps {
-  isMain?: boolean;
+  isMain: boolean;
 }
 
-const Header = ({ isMain = false }: HeaderProps) => {
+const Header = ({ isMain }: HeaderProps) => {
   return (
     <header
       css={[tw`flex flex-col bg-snow`, isMain ? tw`h-[260px]` : tw`h-[60px]`]}
@@ -48,13 +47,10 @@ const Header = ({ isMain = false }: HeaderProps) => {
                 안녕하세요. 성장하는 개발자 서민석입니다.
               </span>
               <div tw="flex gap-2 text-darkGrey">
-                <a href="https://github.com/minxd95" target="_blank">
+                <a href="https://www.instagram.com/smin_stone_" target="_blank">
                   <Icon path={mdiInstagram} size="24px" />
                 </a>
-                <a
-                  href="https://www.instagram.com/smin_stone_/"
-                  target="_blank"
-                >
+                <a href="https://github.com/minxd95" target="_blank">
                   <Icon path={mdiGithub} size="24px" />
                 </a>
               </div>

@@ -5,6 +5,7 @@ module.exports = {
       colors: {
         snow: "#FAFAFA",
         darkGrey: "#787878",
+        lineGrey: "#E8E8E8",
         charcoal: "#333333",
       },
     },

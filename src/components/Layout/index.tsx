@@ -1,11 +1,12 @@
 import Footer from "@/components/Layout/Footer";
 import Header from "@/components/Layout/Header";
+import Main from "@/components/Layout/Main";
 import BaseStyles from "@/styles/BaseStyles";
 import CustomStyles from "@/styles/CustomStyles";
 
 const Layout = ({
   children,
-  isMain,
+  isMain = false,
 }: {
   children?: React.ReactNode;
   isMain?: boolean;
@@ -15,7 +16,7 @@ const Layout = ({
       <BaseStyles />
       <CustomStyles />
       <Header isMain={isMain} />
-      {children}
+      <Main isMain={isMain}>{children}</Main>
       <Footer />
     </div>
   );

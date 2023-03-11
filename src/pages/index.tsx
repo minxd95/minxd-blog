@@ -1,9 +1,22 @@
 import Layout from "@/components/Layout";
-import { css } from "@emotion/react";
+import PostListItem from "@/components/PostListItem";
+import SectionList from "@/components/SectionList";
+import TagList from "@/components/TagList";
 import "twin.macro";
 
 const IndexPage = () => {
-  return <Layout isMain></Layout>;
+  return (
+    <Layout isMain>
+      <TagList />
+      {/* <SectionList /> */}
+      <ul>
+        <PostListItem />
+        <PostListItem />
+        <PostListItem />
+        <PostListItem />
+      </ul>
+    </Layout>
+  );
 };
 
 export default IndexPage;

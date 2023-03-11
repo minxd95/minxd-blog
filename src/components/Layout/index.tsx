@@ -1,6 +1,7 @@
 import Footer from "@/components/Layout/Footer";
 import Header from "@/components/Layout/Header";
-import GlobalStyles from "@/styles/GlobalStyles";
+import BaseStyles from "@/styles/BaseStyles";
+import CustomStyles from "@/styles/CustomStyles";
 
 const Layout = ({
   children,
@@ -11,7 +12,8 @@ const Layout = ({
 }) => {
   return (
     <div>
-      <GlobalStyles />
+      <BaseStyles />
+      <CustomStyles />
       <Header isMain={isMain} />
       {children}
       <Footer />

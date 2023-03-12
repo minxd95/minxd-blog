@@ -4,13 +4,12 @@ import Main from "@/components/Layout/Main";
 import BaseStyles from "@/styles/BaseStyles";
 import CustomStyles from "@/styles/CustomStyles";
 
-const Layout = ({
-  children,
-  isMain = false,
-}: {
+interface LayoutProps {
   children?: React.ReactNode;
   isMain?: boolean;
-}) => {
+}
+
+const Layout = ({ children, isMain = false }: LayoutProps) => {
   return (
     <div>
       <BaseStyles />

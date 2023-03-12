@@ -1,15 +1,32 @@
+import { Link } from "gatsby";
 import "twin.macro";
 
-const PostListItem = () => {
+interface PostListItemProps {
+  title: string;
+  date: string;
+  author: string;
+  slug: string;
+  excerpt: string;
+}
+
+const PostListItem = ({
+  title,
+  date,
+  author,
+  slug,
+  excerpt,
+}: PostListItemProps) => {
   return (
     <li tw="flex flex-col border-t border-solid border-lineGrey first-of-type:border-t-0">
-      <span tw="mt-12 text-[32px] font-bold">🧐 What is Lorem Ipsum?</span>
-      <span tw="mt-5 text-[14px] text-darkGrey">2023년 03월 05일</span>
-      <span tw="mt-4">
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry.
-      </span>
-      <div tw="h-9 flex mt-10 mb-10 gap-2.5">
+      <Link to={`/${slug}`} tw="mt-12 flex flex-col">
+        <span tw="text-[32px] font-bold">{title}</span>
+        <div tw="text-[14px]">
+          <span tw="font-medium">{author}</span>
+          <span tw="text-darkGrey">&nbsp;· {date}</span>
+        </div>
+        <span tw="mt-4">{excerpt}</span>
+      </Link>
+      <div tw="h-9 flex my-10 gap-2.5">
         <span tw="flex justify-center items-center px-4 py-2 rounded-full bg-snow">
           design
         </span>

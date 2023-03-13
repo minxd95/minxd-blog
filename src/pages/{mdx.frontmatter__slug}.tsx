@@ -11,8 +11,8 @@ import {
   ImageDataLike,
   StaticImage,
 } from "gatsby-plugin-image";
+import Markdown from "@/components/Markdown";
 import "twin.macro";
-import "github-markdown-css";
 
 const PostDetailPage = ({
   data,
@@ -55,7 +55,7 @@ const PostDetailPage = ({
               alt={data.mdx?.frontmatter?.image_alt || ""}
             />
           </div>
-          <div className="markdown-body">{children}</div>
+          <Markdown>{children}</Markdown>
         </div>
         {/* profile */}
         <div tw="h-[200px]">

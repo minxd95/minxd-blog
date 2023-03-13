@@ -30,16 +30,7 @@ const Header = ({ isMain }: HeaderProps) => {
         <div tw="h-[200px] mx-auto">
           <div tw="w-[768px] h-full px-6 flex items-center">
             <div tw="w-[123px] h-[123px] mr-8 rounded-full overflow-hidden">
-              <StaticImage
-                src={"../../images/me.jpeg"}
-                alt="me"
-                width={400}
-                height={400}
-                layout="fixed"
-                style={{
-                  transform: "translate(-144px, -150px)",
-                }}
-              />
+              <StaticImage src={"../../images/me.jpeg"} alt="me" />
             </div>
             <div tw="flex flex-col">
               <span tw="text-2xl font-extrabold mb-2">Minseok Seo</span>

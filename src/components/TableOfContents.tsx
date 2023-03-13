@@ -1,13 +1,13 @@
 import useScroll from "@/hooks/useScroll";
-import TableOfContents from "@/types/TableOfContents";
+import TTableOfContents from "@/types/TTableOfContents";
 import { Link } from "gatsby";
 import tw from "twin.macro";
 
-interface SectionListProps {
-  items: TableOfContents;
+interface TableOfContentsProps {
+  items: TTableOfContents;
 }
 
-const SectionList = ({ items }: SectionListProps) => {
+const TableOfContents = ({ items }: TableOfContentsProps) => {
   const { scroll } = useScroll();
 
   return (
@@ -20,7 +20,7 @@ const SectionList = ({ items }: SectionListProps) => {
           <span tw="text-[18px] font-bold mb-6">Sections</span>
           <ul tw="flex flex-col gap-3 text-darkGrey">
             {items?.map((item) => (
-              <li>
+              <li key={item.url}>
                 <Link to={item.url}>{item.title}</Link>
               </li>
             ))}
@@ -31,4 +31,4 @@ const SectionList = ({ items }: SectionListProps) => {
   );
 };
 
-export default SectionList;
+export default TableOfContents;

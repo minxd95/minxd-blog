@@ -1,5 +1,5 @@
 import Layout from "@/components/Layout";
-import SectionList from "@/components/SectionList";
+import TableOfContents from "@/components/TableOfContents";
 import SEO from "@/components/SEO";
 import { mdiInstagram, mdiGithub, mdiArrowLeft, mdiArrowRight } from "@mdi/js";
 import Icon from "@mdi/react";
@@ -13,7 +13,7 @@ import {
 } from "gatsby-plugin-image";
 import Markdown from "@/components/Markdown";
 import "twin.macro";
-import TableOfContents from "@/types/TableOfContents";
+import TTableOfContents from "@/types/TTableOfContents";
 
 const PostDetailPage = ({
   data,
@@ -21,8 +21,8 @@ const PostDetailPage = ({
 }: PageProps<Queries.PostDetailPageQuery>) => {
   return (
     <Layout>
-      <SectionList
-        items={data.mdx?.tableOfContents?.items as TableOfContents}
+      <TableOfContents
+        items={data.mdx?.tableOfContents?.items as TTableOfContents}
       />
       <div tw="flex flex-col py-12">
         {/* title */}

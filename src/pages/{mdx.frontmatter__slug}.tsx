@@ -13,6 +13,7 @@ import {
 } from "gatsby-plugin-image";
 import Markdown from "@/components/Markdown";
 import "twin.macro";
+import TableOfContents from "@/types/TableOfContents";
 
 const PostDetailPage = ({
   data,
@@ -20,7 +21,9 @@ const PostDetailPage = ({
 }: PageProps<Queries.PostDetailPageQuery>) => {
   return (
     <Layout>
-      <SectionList />
+      <SectionList
+        items={data.mdx?.tableOfContents?.items as TableOfContents}
+      />
       <div tw="flex flex-col py-12">
         {/* title */}
         <div>
@@ -136,6 +139,7 @@ export const query = graphql`
           }
         }
       }
+      tableOfContents
     }
   }
 `;

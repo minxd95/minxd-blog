@@ -14,6 +14,7 @@ import {
 import Markdown from "@/components/Markdown";
 import "twin.macro";
 import TTableOfContents from "@/types/TTableOfContents";
+import Comment from "@/components/Comment";
 
 const PostDetailPage = ({
   data,
@@ -22,7 +23,7 @@ const PostDetailPage = ({
   return (
     <Layout>
       <TableOfContents
-        items={data.mdx?.tableOfContents?.items as TTableOfContents}
+        items={data.mdx?.tableOfContents?.items as TTableOfContents[]}
       />
       <div tw="flex flex-col py-12">
         {/* title */}
@@ -108,7 +109,8 @@ const PostDetailPage = ({
         {/* comments */}
         <div tw="border-t border-solid border-lineGrey">
           <div tw="mt-7 mb-14 flex justify-center">
-            <StaticImage src="../images/comment.png" alt="comment" />
+            {/* <StaticImage src="../images/comment.png" alt="comment" /> */}
+            <Comment />
           </div>
         </div>
       </div>

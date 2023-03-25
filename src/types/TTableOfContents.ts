@@ -1,3 +1,3 @@
-type TTableOfContents = Array<{ url: string; title: string }> | undefined;
+type TTableOfContents = { url: string; title: string };
 
 export default TTableOfContents;

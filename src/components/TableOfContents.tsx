@@ -4,7 +4,7 @@ import { Link } from "gatsby";
 import tw from "twin.macro";
 
 interface TableOfContentsProps {
-  items: TTableOfContents;
+  items: TTableOfContents[] | undefined;
 }
 
 const TableOfContents = ({ items }: TableOfContentsProps) => {

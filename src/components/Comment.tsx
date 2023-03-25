@@ -9,7 +9,7 @@ const Comment = () => {
     utterancesScript.src = "https://utteranc.es/client.js";
     utterancesScript.setAttribute("repo", "minxd95/minxd-blog");
     utterancesScript.setAttribute("issue-term", "pathname");
-    utterancesScript.setAttribute("label", "✨💬✨");
+    utterancesScript.setAttribute("label", "comment");
     utterancesScript.setAttribute("theme", "github-light");
     utterancesScript.setAttribute("crossorigin", "anonymous");
     commentsElement.current?.appendChild(utterancesScript);

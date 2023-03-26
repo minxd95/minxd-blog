@@ -8,7 +8,7 @@ import "twin.macro";
 const IndexPage = ({ data }: PageProps<Queries.IndexPageQuery>) => {
   return (
     <Layout isMain>
-      <TagList />
+      {/* todo: <TagList /> */}
       <ul tw="mb-20">
         {data.allMdx.nodes.map((post) => (
           <PostListItem
@@ -27,7 +27,7 @@ const IndexPage = ({ data }: PageProps<Queries.IndexPageQuery>) => {
 
 export const query = graphql`
   query IndexPage {
-    allMdx {
+    allMdx(sort: { frontmatter: { date: DESC } }) {
       nodes {
         id
         frontmatter {

@@ -50,21 +50,24 @@ const PostDetailPage = ({
         </div>
         {/* contents */}
         <div tw="pt-8 pb-[74px] border-t border-solid border-lineGrey">
-          <div tw="mb-8">
-            <GatsbyImage
-              image={
-                getImage(
-                  data.mdx?.frontmatter?.image?.childImageSharp as ImageDataLike
-                ) as IGatsbyImageData
-              }
-              alt={data.mdx?.frontmatter?.image_alt || ""}
-            />
-          </div>
+          {data.mdx?.frontmatter?.image && (
+            <div tw="mb-8">
+              <GatsbyImage
+                image={
+                  getImage(
+                    data.mdx?.frontmatter?.image
+                      ?.childImageSharp as ImageDataLike
+                  ) as IGatsbyImageData
+                }
+                alt={data.mdx?.frontmatter?.image_alt || ""}
+              />
+            </div>
+          )}
           <Markdown>{children}</Markdown>
         </div>
         {/* profile */}
         <div tw="h-[200px]">
-          <div tw="w-[768px] h-full flex items-center">
+          <div tw="w-full h-full flex items-center">
             <div tw="w-[123px] h-[123px] mr-8 rounded-full overflow-hidden">
               <StaticImage src={"../images/me.jpeg"} alt="me" />
             </div>
@@ -84,12 +87,11 @@ const PostDetailPage = ({
             </div>
           </div>
         </div>
-        {/* next/prev post */}
-        <PostNavigator />
+        {/* todo: next/prev post */}
+        {/* <PostNavigator /> */}
         {/* comments */}
         <div tw="border-t border-solid border-lineGrey">
-          <div tw="mt-7 mb-14 flex justify-center">
-            {/* <StaticImage src="../images/comment.png" alt="comment" /> */}
+          <div tw="mt-10 mb-14 flex justify-center">
             <Comment />
           </div>
         </div>

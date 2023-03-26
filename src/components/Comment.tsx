@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import "twin.macro";
 
 const Comment = () => {
   const commentsElement = useRef<HTMLDivElement>(null);
@@ -15,11 +16,7 @@ const Comment = () => {
     commentsElement.current?.appendChild(utterancesScript);
   }, []);
 
-  return (
-    <div>
-      <div ref={commentsElement} />
-    </div>
-  );
+  return <div tw="w-full" ref={commentsElement} />;
 };
 
 export default Comment;

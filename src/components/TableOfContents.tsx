@@ -1,14 +1,16 @@
 import useScroll from "@/hooks/useScroll";
+import useTOC from "@/hooks/useTOC";
 import TTableOfContents from "@/types/TTableOfContents";
 import { Link } from "gatsby";
 import tw from "twin.macro";
 
 interface TableOfContentsProps {
-  items: TTableOfContents[] | undefined;
+  items: TTableOfContents[];
 }
 
 const TableOfContents = ({ items }: TableOfContentsProps) => {
   const { scroll } = useScroll();
+  const activeId = useTOC(items);
 
   return (
     <div tw="absolute top-[180px] left-full">
@@ -20,7 +22,13 @@ const TableOfContents = ({ items }: TableOfContentsProps) => {
           <span tw="text-[18px] font-bold mb-6">Sections</span>
           <ul tw="flex flex-col gap-3 text-darkGrey">
             {items?.map((item) => (
-              <li key={item.url}>
+              <li
+                key={item.url}
+                css={[
+                  item.url.slice(1) === activeId &&
+                    tw`text-charcoal font-medium translate-x-1 transition-toc`,
+                ]}
+              >
                 <Link to={item.url}>{item.title}</Link>
               </li>
             ))}

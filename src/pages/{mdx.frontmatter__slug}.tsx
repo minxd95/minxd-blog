@@ -15,6 +15,7 @@ import Markdown from "@/components/Markdown";
 import "twin.macro";
 import TTableOfContents from "@/types/TTableOfContents";
 import Comment from "@/components/Comment";
+import PostNavigator from "@/components/PostNavigator";
 
 const PostDetailPage = ({
   data,
@@ -84,28 +85,7 @@ const PostDetailPage = ({
           </div>
         </div>
         {/* next/prev post */}
-        <div tw="flex justify-between my-7">
-          <Link
-            to="#"
-            tw="w-[258px] h-20 flex justify-start items-center bg-snow rounded-xl px-5 py-3"
-          >
-            <Icon path={mdiArrowLeft} size="24px" />
-            <div tw="flex flex-col items-start ml-[18px] leading-7">
-              <span tw="text-[12px]">Previous Post</span>
-              <span tw="font-medium">How to use Figma?</span>
-            </div>
-          </Link>
-          <Link
-            to="#"
-            tw="w-[258px] h-20 flex justify-end items-center bg-snow rounded-xl px-5 py-3"
-          >
-            <div tw="flex flex-col items-end mr-[18px] leading-7">
-              <span tw="text-[12px]">Next Post</span>
-              <span tw="font-medium">How to use Figma?</span>
-            </div>
-            <Icon path={mdiArrowRight} size="24px" />
-          </Link>
-        </div>
+        <PostNavigator />
         {/* comments */}
         <div tw="border-t border-solid border-lineGrey">
           <div tw="mt-7 mb-14 flex justify-center">

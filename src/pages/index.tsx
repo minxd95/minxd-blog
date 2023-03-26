@@ -9,7 +9,7 @@ const IndexPage = ({ data }: PageProps<Queries.IndexPageQuery>) => {
   return (
     <Layout isMain>
       <TagList />
-      <ul>
+      <ul tw="mb-20">
         {data.allMdx.nodes.map((post) => (
           <PostListItem
             key={post.id}

@@ -8,6 +8,9 @@ module.exports = {
         lineGrey: "#E8E8E8",
         charcoal: "#333333",
       },
+      transitionProperty: {
+        toc: "font-weight, color, transform",
+      },
     },
   },
   plugins: [],

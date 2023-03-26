@@ -3,6 +3,10 @@ import { Global, css } from "@emotion/react";
 import tw from "twin.macro";
 
 const customStyles = css`
+  html {
+    scroll-behavior: smooth;
+  }
+
   /* font settings */
   @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
 

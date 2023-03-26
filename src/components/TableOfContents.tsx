@@ -13,13 +13,13 @@ const TableOfContents = ({ items }: TableOfContentsProps) => {
   const activeId = useTOC(items);
 
   return (
-    <div tw="absolute top-[180px] left-full">
+    <div tw="absolute top-[200px] left-full">
       <div tw="relative">
         <div
           tw="w-[240px] flex flex-col ml-6"
-          css={[scroll <= 120 ? tw`absolute` : tw`fixed top-[120px]`]}
+          css={[scroll <= 140 ? tw`absolute` : tw`fixed top-[120px]`]}
         >
-          <span tw="text-[18px] font-bold mb-6">Sections</span>
+          {/* <span tw="text-[18px] font-bold mb-6">Sections</span> */}
           <ul tw="flex flex-col gap-3 text-darkGrey">
             {items?.map((item) => (
               <li

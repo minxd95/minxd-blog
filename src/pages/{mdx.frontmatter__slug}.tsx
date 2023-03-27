@@ -68,7 +68,7 @@ const PostDetailPage = ({
         {/* profile */}
         <div tw="h-[200px]">
           <div tw="w-full h-full flex items-center">
-            <div tw="w-[123px] h-[123px] mr-8 rounded-full overflow-hidden">
+            <div tw="w-[123px] h-[123px] mr-8 rounded-full overflow-hidden isolate">
               <StaticImage src={"../images/me.jpeg"} alt="me" />
             </div>
             <div tw="flex flex-col">

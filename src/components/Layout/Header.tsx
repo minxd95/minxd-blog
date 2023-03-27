@@ -29,7 +29,7 @@ const Header = ({ isMain }: HeaderProps) => {
       {isMain && (
         <div tw="h-[200px] mx-auto">
           <div tw="w-[768px] h-full px-6 flex items-center">
-            <div tw="w-[123px] h-[123px] mr-8 rounded-full overflow-hidden">
+            <div tw="w-[123px] h-[123px] mr-8 rounded-full overflow-hidden isolate">
               <StaticImage src={"../../images/me.jpeg"} alt="me" />
             </div>
             <div tw="flex flex-col">

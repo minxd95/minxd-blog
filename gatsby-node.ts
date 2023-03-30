@@ -1,7 +1,6 @@
 import { CreatePagesArgs } from "gatsby";
-
-const path = require("path");
-const _ = require("lodash");
+import path from "path";
+import _ from "lodash";
 
 exports.createPages = async ({
   actions,
@@ -12,8 +11,8 @@ exports.createPages = async ({
 
   const tagTemplate = path.resolve("src/templates/tags.tsx");
 
-  const result = await graphql<any>(`
-    {
+  const result = await graphql<Queries.TagsQuery>(`
+    query Tags {
       tagsGroup: allMdx {
         group(field: { frontmatter: { tags: SELECT } }) {
           fieldValue
@@ -29,12 +28,12 @@ exports.createPages = async ({
   }
 
   // Extract tag data from query
-  const tags = result.data.tagsGroup.group;
+  const tags = result.data?.tagsGroup.group || [];
 
   // Make tag pages
-  tags.forEach((tag: any) => {
+  tags.forEach((tag) => {
     createPage({
-      path: `/tags/${_.kebabCase(tag.fieldValue)}/`,
+      path: `/tags/${_.kebabCase(tag.fieldValue || "")}/`,
       component: tagTemplate,
       context: {
         tag: tag.fieldValue,

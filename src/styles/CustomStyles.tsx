@@ -3,12 +3,12 @@ import { Global, css } from "@emotion/react";
 import tw from "twin.macro";
 
 const customStyles = css`
+  /* font settings */
+  @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
+
   html {
     scroll-behavior: smooth;
   }
-
-  /* font settings */
-  @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
 
   body {
     font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI",

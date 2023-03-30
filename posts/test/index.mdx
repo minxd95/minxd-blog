@@ -1,0 +1,148 @@
+---
+title: "test"
+date: "2023-03-28"
+author: "Minseok Seo"
+slug: "test"
+image: "./hero.jpeg"
+image_alt: "postgresql"
+tags: ["tag1", "tag2", "testtag"]
+---
+
+**참고만 하시고 공식문서 정독을 추천드립니다.**
+
+맥 환경에서 NestJS 프로젝트에 PostgreSQL과 TypeORM을 세팅하는 과정을 기록합니다.
+
+### Homebrew를 이용하여 PostgreSQL 설치
+
+homebrew를 이용하여 설치하겠습니다.
+
+```shell
+brew install postgresql
+```
+
+설치 완료 후 아래 명령어로 서버 시작
+
+```shell
+brew services start postgresql
+```
+
+### NestJS 프로젝트 생성
+
+```shell
+nest new my-nest-project
+```
+
+### 패키지 설치
+
+```shell
+npm i @nestjs/typeorm typeorm pg
+```
+
+- @nestjs/typeorm : NestJS 전용 TypeORM 모듈
+- typeorm : 기본 TypeORM 모듈
+- pg : PostgreSQL 모듈
+
+### app.module에서 import
+
+```javascript
+// src/app.module.ts
+import { Module } from "@nestjs/common";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { AppController } from "./app.controller";
+import { AppService } from "./app.service";
+
+@Module({
+  imports: [
+    TypeOrmModule.forRoot({
+      // 사용하고자 하는 데이터베이스 종류
+      type: "postgres",
+      // DB서버 엔드포인트
+      host: "localhost",
+      // DB서버가 열려있는 포트 (기본값: 5432)
+      port: 5432,
+      // psql 접속 아이디
+      username: "minxd95",
+      // psql 접속 패스워드
+      password: "",
+      // 데이터베이스 이름
+      database: "wyt",
+      // 사용하고자 하는 Entity들을 배열에 추가
+      entities: [],
+      // Entity와 서버의 Schema를 동기화
+      synchronize: true,
+    }),
+  ],
+  controllers: [AppController],
+  providers: [AppService],
+})
+export class AppModule {}
+```
+
+### NestJS Resource 생성
+
+```shell
+nest g res users
+```
+
+### Entity 정의
+
+```javascript
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+
+@Entity()
+export class User {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
+  name: string;
+
+  @Column()
+  age: number;
+}
+```
+
+### users.module에서 import
+
+```javascript
+// src/users/users.module.ts
+import { Module } from "@nestjs/common";
+import { UsersService } from "./users.service";
+import { UsersController } from "./users.controller";
+import { TypeOrmModule } from "@nestjs/typeorm";
+import { User } from "./entities/user.entity";
+
+@Module({
+  // 아래 줄을 추가함으로써 Users Repository를 주입할 수 있다.
+  imports: [TypeOrmModule.forFeature([User])],
+  controllers: [UsersController],
+  providers: [UsersService],
+})
+export class UsersModule {}
+```
+
+### app.module.ts 수정
+
+```javascript
+// src/app.module.ts
+import { User } from './entities/user.entity';
+
+... 생략 ...
+
+@Module({
+  imports: [
+    TypeOrmModule.forRoot({
+      ... 생략 ...
+      // User Entity를 추가해줍니다.
+      entities: [User],
+      ... 생략 ...
+    }),
+    UsersModule,
+  ],
+  controllers: [AppController],
+  providers: [AppService],
+})
+export class AppModule {}
+```
+
+여기까지 하고 서버를 실행하시면 users 테이블이 생성된 것을 볼 수 있습니다.

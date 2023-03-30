@@ -16,6 +16,7 @@ import "twin.macro";
 import TTableOfContents from "@/types/TTableOfContents";
 import Comment from "@/components/Comment";
 import PostNavigator from "@/components/PostNavigator";
+import Tag from "@/components/Tag";
 
 const PostDetailPage = ({
   data,
@@ -37,15 +38,9 @@ const PostDetailPage = ({
             </span>
           </div>
           <div tw="h-9 flex my-6 gap-2.5">
-            <span tw="flex justify-center items-center px-4 py-2 rounded-full bg-snow">
-              design
-            </span>
-            <span tw="flex justify-center items-center px-4 py-2 rounded-full bg-snow">
-              lorem
-            </span>
-            <span tw="flex justify-center items-center px-4 py-2 rounded-full bg-snow">
-              ipsum
-            </span>
+            <Tag text="design" />
+            <Tag text="lorem" />
+            <Tag text="ipsum" />
           </div>
         </div>
         {/* contents */}

@@ -1,6 +1,6 @@
 import { CreatePagesArgs } from "gatsby";
 import path from "path";
-import _ from "lodash";
+import kebabCase from "lodash/kebabCase";
 
 exports.createPages = async ({
   actions,
@@ -9,7 +9,7 @@ exports.createPages = async ({
 }: CreatePagesArgs) => {
   const { createPage } = actions;
 
-  const tagTemplate = path.resolve("src/templates/tags.tsx");
+  const tagTemplate = path.resolve("src/templates/tagsTemplate.tsx");
 
   const result = await graphql<Queries.TagsQuery>(`
     query Tags {
@@ -33,7 +33,7 @@ exports.createPages = async ({
   // Make tag pages
   tags.forEach((tag) => {
     createPage({
-      path: `/tags/${_.kebabCase(tag.fieldValue || "")}/`,
+      path: `/tags/${kebabCase(tag.fieldValue || "")}/`,
       component: tagTemplate,
       context: {
         tag: tag.fieldValue,

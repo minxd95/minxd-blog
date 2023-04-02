@@ -7,7 +7,11 @@ import queryString from "query-string";
 import "twin.macro";
 
 const TagsPage = ({ data }: PageProps<Queries.TagsPageQuery>) => {
-  const selectedTag = queryString.parse(location.search).filter as string;
+  let selectedTag = "";
+  if (typeof document !== "undefined") {
+    selectedTag = queryString.parse(location.search).filter as string;
+  }
+
   const totalTagCount = data.tags.group.reduce(
     (sum, current) => sum + current.totalCount,
     0

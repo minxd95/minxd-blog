@@ -1,39 +1,82 @@
 import Layout from "@/components/Layout";
+import PostListItem from "@/components/PostListItem";
 import SEO from "@/components/SEO";
 import Tag from "@/components/Tag";
 import { graphql, Link, PageProps } from "gatsby";
-import kebabCase from "lodash/kebabCase";
+import queryString from "query-string";
 import "twin.macro";
 
 const TagsPage = ({ data }: PageProps<Queries.TagsPageQuery>) => {
-  const totalTagCount = data.allMdx.group.reduce(
+  const selectedTag = queryString.parse(location.search).filter as string;
+  const totalTagCount = data.tags.group.reduce(
     (sum, current) => sum + current.totalCount,
     0
   );
-  const tags = data.allMdx.group.map((tag) => tag.fieldValue);
+  const {
+    posts: { nodes: posts },
+    tags,
+  } = data;
+
   return (
     <Layout>
       <div tw="flex flex-col py-12">
         {/* title */}
-        <span tw="text-[32px] font-bold">총 {totalTagCount}개의 태그</span>
+        <span tw="text-2xl font-bold">총 {totalTagCount}개의 태그</span>
       </div>
       <div tw="flex flex-wrap gap-x-2.5 gap-y-2">
-        {tags.map((tag) => (
-          <Link to={`/tags/${kebabCase(tag || "")}`}>
-            <Tag text={tag || ""} />
+        {tags.group.map((tag) => (
+          <Link key={tag.fieldValue} to={`/tags?filter=${tag.fieldValue}`}>
+            <Tag
+              text={tag.fieldValue}
+              isActive={tag.fieldValue === selectedTag}
+              count={tag.totalCount}
+            />
           </Link>
         ))}
       </div>
+      <ul tw="mb-20">
+        {posts
+          .filter((post) =>
+            selectedTag ? post.frontmatter?.tags?.includes(selectedTag) : true
+          )
+          .map((post) => (
+            <PostListItem
+              key={post.id}
+              title={post.frontmatter?.title}
+              date={post.frontmatter?.date}
+              author={post.frontmatter?.author}
+              slug={post.frontmatter?.slug}
+              excerpt={post.excerpt}
+              tags={[...(post.frontmatter?.tags || [])]}
+            />
+          ))}
+      </ul>
     </Layout>
   );
 };
 
 export const query = graphql`
   query TagsPage {
-    allMdx {
+    tags: allMdx {
       group(field: { frontmatter: { tags: SELECT } }) {
         fieldValue
         totalCount
+      }
+    }
+    posts: allMdx(
+      sort: { frontmatter: { date: DESC } }
+      filter: { frontmatter: { tags: { ne: null } } }
+    ) {
+      nodes {
+        id
+        frontmatter {
+          title
+          date(formatString: "YYYY년 M월 DD일")
+          author
+          slug
+          tags
+        }
+        excerpt
       }
     }
   }

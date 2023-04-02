@@ -1,12 +1,21 @@
 import "twin.macro";
+import tw from "twin.macro";
 
 interface TagProps {
-  text: string;
+  text: string | null;
+  isActive?: boolean;
+  count?: number;
 }
-const Tag = ({ text }: TagProps) => {
+const Tag = ({ text, isActive, count }: TagProps) => {
   return (
-    <span tw="flex justify-center items-center px-4 py-2 rounded-full bg-snow">
-      {text}
+    <span
+      css={[
+        tw`flex justify-center items-center px-4 py-2 rounded-full bg-snow`,
+        isActive && tw`bg-lineGrey transition-all`,
+      ]}
+    >
+      {text}&nbsp;
+      {count && `(${count})`}
     </span>
   );
 };

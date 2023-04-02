@@ -38,9 +38,9 @@ const PostDetailPage = ({
             </span>
           </div>
           <div tw="h-9 flex my-6 gap-2.5">
-            <Tag text="design" />
-            <Tag text="lorem" />
-            <Tag text="ipsum" />
+            {data.mdx?.frontmatter?.tags?.map((tag) => (
+              <Tag key={tag} text={tag} />
+            ))}
           </div>
         </div>
         {/* contents */}
@@ -108,6 +108,7 @@ export const query = graphql`
             gatsbyImageData
           }
         }
+        tags
       }
       tableOfContents
     }

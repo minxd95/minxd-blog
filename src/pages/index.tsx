@@ -8,9 +8,14 @@ import "twin.macro";
 const IndexPage = ({ data }: PageProps<Queries.IndexPageQuery>) => {
   return (
     <Layout isMain>
-      {/* todo: <TagList /> */}
+      <TagList
+        tagList={data.tags.group.map((tag) => ({
+          label: tag.fieldValue,
+          count: tag.totalCount,
+        }))}
+      />
       <ul tw="mb-20">
-        {data.allMdx.nodes.map((post) => (
+        {data.posts.nodes.map((post) => (
           <PostListItem
             key={post.id}
             title={post.frontmatter?.title || ""}
@@ -18,6 +23,7 @@ const IndexPage = ({ data }: PageProps<Queries.IndexPageQuery>) => {
             author={post.frontmatter?.author || ""}
             slug={post.frontmatter?.slug || ""}
             excerpt={post.excerpt || ""}
+            tags={[...(post.frontmatter?.tags || [])]}
           />
         ))}
       </ul>
@@ -27,7 +33,7 @@ const IndexPage = ({ data }: PageProps<Queries.IndexPageQuery>) => {
 
 export const query = graphql`
   query IndexPage {
-    allMdx(sort: { frontmatter: { date: DESC } }) {
+    posts: allMdx(sort: { frontmatter: { date: DESC } }) {
       nodes {
         id
         frontmatter {
@@ -35,8 +41,15 @@ export const query = graphql`
           date(formatString: "YYYY년 M월 DD일")
           author
           slug
+          tags
         }
         excerpt
+      }
+    }
+    tags: allMdx {
+      group(field: { frontmatter: { tags: SELECT } }) {
+        fieldValue
+        totalCount
       }
     }
   }

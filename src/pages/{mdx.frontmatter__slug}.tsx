@@ -36,7 +36,7 @@ const PostDetailPage = ({
               &nbsp;· {data.mdx?.frontmatter?.date}
             </span>
           </div>
-          <div tw="h-9 flex my-6 gap-2.5">
+          <div tw="flex my-6 gap-2.5">
             {data.mdx?.frontmatter?.tags?.map((tag) => (
               <Tag key={tag} text={tag} />
             ))}

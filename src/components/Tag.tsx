@@ -10,7 +10,7 @@ const Tag = ({ text, isActive, count }: TagProps) => {
   return (
     <span
       css={[
-        tw`flex justify-center items-center px-4 py-2 rounded-full bg-snow`,
+        tw`h-8 flex justify-center items-center px-4 rounded-full bg-snow text-sm`,
         isActive && tw`bg-lineGrey transition-all`,
       ]}
     >

@@ -1,9 +1,9 @@
 import Layout from "@/components/Layout";
 import TableOfContents from "@/components/TableOfContents";
 import SEO from "@/components/SEO";
-import { mdiInstagram, mdiGithub, mdiArrowLeft, mdiArrowRight } from "@mdi/js";
+import { mdiInstagram, mdiGithub } from "@mdi/js";
 import Icon from "@mdi/react";
-import { graphql, HeadProps, Link, PageProps } from "gatsby";
+import { graphql, HeadProps, PageProps } from "gatsby";
 import {
   GatsbyImage,
   getImage,
@@ -15,7 +15,6 @@ import Markdown from "@/components/Markdown";
 import "twin.macro";
 import TTableOfContents from "@/types/TTableOfContents";
 import Comment from "@/components/Comment";
-import PostNavigator from "@/components/PostNavigator";
 import Tag from "@/components/Tag";
 
 const PostDetailPage = ({

@@ -1,6 +1,6 @@
 import CodeBlock from "@/components/CodeBlock";
 import { MDXProvider } from "@mdx-js/react";
-import "github-markdown-css";
+import "@/styles/github-markdown-light.css";
 
 interface MarkdownProps {
   children: React.ReactNode;

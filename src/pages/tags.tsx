@@ -23,7 +23,7 @@ const TagsPage = ({ data }: PageProps<Queries.TagsPageQuery>) => {
 
   return (
     <Layout>
-      <div tw="flex flex-col py-12">
+      <div tw="py-12">
         {/* title */}
         <span tw="text-2xl font-bold">총 {totalTagCount}개의 태그</span>
       </div>

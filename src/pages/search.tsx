@@ -37,16 +37,16 @@ const SearchPage = ({ data }: PageProps<Queries.SearchPageQuery>) => {
         <Icon
           path={mdiMagnify}
           size="24px"
-          tw="absolute left-5"
-          css={[isFocused ? tw`text-darkLineGrey` : tw`text-lineGrey`]}
+          tw="absolute left-5 transition-all"
+          css={[isFocused ? tw`text-gray-400` : tw`text-gray-300`]}
         />
         <input
           type="text"
-          tw="w-full h-full px-14 border border-solid rounded-xl focus:outline-none"
+          tw="w-full h-full px-14 border border-solid rounded-xl focus:outline-0 transition-all"
           css={[
             isFocused
-              ? tw`border-darkLineGrey placeholder-darkLineGrey`
-              : tw`border-lineGrey placeholder-lineGrey`,
+              ? tw`border-gray-400 placeholder-gray-400`
+              : tw`border-gray-300 placeholder-gray-300`,
           ]}
           value={filter}
           onFocus={handleFocus}

@@ -27,7 +27,7 @@ const TagsPage = ({ data }: PageProps<Queries.TagsPageQuery>) => {
         {/* title */}
         <span tw="text-2xl font-bold">총 {totalTagCount}개의 태그</span>
       </div>
-      <div tw="flex flex-wrap gap-x-2.5 gap-y-2">
+      <div tw="h-12 flex items-center flex-wrap gap-x-2.5 gap-y-2">
         {tags.group.map((tag) => (
           <Link key={tag.fieldValue} to={`/tags?filter=${tag.fieldValue}`}>
             <Tag

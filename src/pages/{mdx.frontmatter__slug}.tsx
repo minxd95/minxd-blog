@@ -43,7 +43,7 @@ const PostDetailPage = ({
           </div>
         </div>
         {/* contents */}
-        <div tw="pt-8 pb-[74px] border-t border-solid border-lineGrey">
+        <div tw="pt-8 pb-[74px] border-t border-solid border-gray-200">
           {data.mdx?.frontmatter?.image && (
             <div tw="mb-8">
               <GatsbyImage
@@ -84,7 +84,7 @@ const PostDetailPage = ({
         {/* todo: next/prev post */}
         {/* <PostNavigator /> */}
         {/* comments */}
-        <div tw="border-t border-solid border-lineGrey">
+        <div tw="border-t border-solid border-gray-200">
           <div tw="mt-10 mb-14 flex justify-center">
             <Comment />
           </div>

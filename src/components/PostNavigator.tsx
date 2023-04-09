@@ -8,7 +8,7 @@ const PostNavigator = () => {
     <div tw="flex justify-between mt-7 mb-14">
       <Link
         to="#"
-        tw="w-[258px] h-20 flex justify-start items-center bg-snow rounded-xl px-5 py-3"
+        tw="w-[258px] h-20 flex justify-start items-center bg-gray-50 rounded-xl px-5 py-3"
       >
         <Icon path={mdiArrowLeft} size="24px" />
         <div tw="flex flex-col items-start ml-[18px] leading-7">
@@ -18,7 +18,7 @@ const PostNavigator = () => {
       </Link>
       <Link
         to="#"
-        tw="w-[258px] h-20 flex justify-end items-center bg-snow rounded-xl px-5 py-3"
+        tw="w-[258px] h-20 flex justify-end items-center bg-gray-50 rounded-xl px-5 py-3"
       >
         <div tw="flex flex-col items-end mr-[18px] leading-7">
           <span tw="text-[12px]">Next Post</span>

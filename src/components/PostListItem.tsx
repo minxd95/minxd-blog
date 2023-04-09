@@ -20,7 +20,7 @@ const PostListItem = ({
   tags = [],
 }: PostListItemProps) => {
   return (
-    <li tw="flex flex-col border-t border-solid border-lineGrey first-of-type:border-t-0">
+    <li tw="flex flex-col border-t border-solid border-gray-200 first-of-type:border-t-0">
       <Link to={`/${slug}`} tw="mt-12 flex flex-col">
         <span tw="text-[32px] font-bold">{title}</span>
         <div tw="my-4 text-[14px]">

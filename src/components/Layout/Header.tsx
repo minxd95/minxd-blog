@@ -11,7 +11,10 @@ interface HeaderProps {
 const Header = ({ isMain }: HeaderProps) => {
   return (
     <header
-      css={[tw`flex flex-col bg-snow`, isMain ? tw`h-[260px]` : tw`h-[60px]`]}
+      css={[
+        tw`flex flex-col bg-gray-50`,
+        isMain ? tw`h-[260px]` : tw`h-[60px]`,
+      ]}
     >
       <nav tw="h-[60px] px-20 flex justify-between items-center">
         <Link tw="text-2xl font-extrabold" to="/">

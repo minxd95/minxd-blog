@@ -32,7 +32,7 @@ const PostDetailPage = ({
           <span tw="text-[32px] font-bold">{data.mdx?.frontmatter?.title}</span>
           <div tw="text-[14px] flex mt-6">
             <span tw="font-bold">{data.mdx?.frontmatter?.author}</span>
-            <span tw="text-gray-300">
+            <span tw="text-gray-500">
               &nbsp;· {data.mdx?.frontmatter?.date}
             </span>
           </div>
@@ -67,10 +67,10 @@ const PostDetailPage = ({
             </div>
             <div tw="flex flex-col">
               <span tw="text-2xl font-extrabold mb-2">Minseok Seo</span>
-              <span tw="font-medium text-gray-300 mb-4">
+              <span tw="font-medium text-gray-500 mb-4">
                 안녕하세요. 성장하는 개발자 서민석입니다.
               </span>
-              <div tw="flex gap-2 text-gray-300">
+              <div tw="flex gap-2 text-gray-500">
                 <a href="https://www.instagram.com/smin_stone_" target="_blank">
                   <Icon path={mdiInstagram} size="24px" />
                 </a>

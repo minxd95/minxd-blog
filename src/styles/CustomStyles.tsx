@@ -17,7 +17,7 @@ const customStyles = css`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-    ${tw`text-charcoal`}
+    ${tw`text-gray-700`}
   }
 
   .markdown-body ol,

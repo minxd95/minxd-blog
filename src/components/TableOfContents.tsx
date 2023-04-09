@@ -20,13 +20,13 @@ const TableOfContents = ({ items }: TableOfContentsProps) => {
           css={[scroll <= 140 ? tw`absolute` : tw`fixed top-[120px]`]}
         >
           {/* <span tw="text-[18px] font-bold mb-6">Sections</span> */}
-          <ul tw="flex flex-col gap-3 text-gray-300">
+          <ul tw="flex flex-col gap-3 text-gray-500">
             {items?.map((item) => (
               <li
                 key={item.url}
                 css={[
                   item.url.slice(1) === activeId &&
-                    tw`text-charcoal font-medium translate-x-1 transition-toc`,
+                    tw`text-gray-700 font-medium translate-x-1 transition-toc`,
                 ]}
               >
                 <Link to={item.url}>{item.title}</Link>

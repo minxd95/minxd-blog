@@ -20,7 +20,7 @@ const Header = ({ isMain }: HeaderProps) => {
         <Link tw="text-2xl font-extrabold" to="/">
           Seom.in
         </Link>
-        <div tw="flex gap-4 text-gray-300">
+        <div tw="flex gap-4 text-gray-500">
           <Link to="/tags">
             <Icon path={mdiTagOutline} size="24px" />
           </Link>
@@ -37,10 +37,10 @@ const Header = ({ isMain }: HeaderProps) => {
             </div>
             <div tw="flex flex-col">
               <span tw="text-2xl font-extrabold mb-2">Minseok Seo</span>
-              <span tw="font-medium text-gray-300 mb-4">
+              <span tw="font-medium text-gray-500 mb-4">
                 안녕하세요. 성장하는 개발자 서민석입니다.
               </span>
-              <div tw="flex gap-2 text-gray-300">
+              <div tw="flex gap-2 text-gray-500">
                 <a href="https://www.instagram.com/smin_stone_" target="_blank">
                   <Icon path={mdiInstagram} size="24px" />
                 </a>

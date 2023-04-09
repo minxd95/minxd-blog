@@ -17,10 +17,12 @@ import TTableOfContents from "@/types/TTableOfContents";
 import Comment from "@/components/Comment";
 import Tag from "@/components/Tag";
 
-const PostDetailPage = ({
+const PostTemplate = ({
   data,
   children,
-}: PageProps<Queries.PostDetailPageQuery>) => {
+}: PageProps<Queries.PostTemplateQuery>) => {
+  console.log("data", data);
+  console.log("children", children);
   return (
     <Layout>
       <TableOfContents
@@ -95,7 +97,7 @@ const PostDetailPage = ({
 };
 
 export const query = graphql`
-  query PostDetailPage($id: String) {
+  query PostTemplate($id: String) {
     mdx(id: { eq: $id }) {
       frontmatter {
         title
@@ -114,8 +116,8 @@ export const query = graphql`
   }
 `;
 
-export const Head = ({ data }: HeadProps<Queries.PostDetailPageQuery>) => (
+export const Head = ({ data }: HeadProps<Queries.PostTemplateQuery>) => (
   <SEO title={data.mdx?.frontmatter?.title || ""} />
 );
 
-export default PostDetailPage;
+export default PostTemplate;

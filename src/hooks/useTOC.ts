@@ -17,9 +17,8 @@ const useTOC = (items: TTableOfContents[]) => {
     );
 
     items.forEach((item) => {
-      observer.observe(
-        document.getElementById(item.url.slice(1)) as HTMLElement
-      );
+      const element = document.getElementById(item.url.slice(1)) as HTMLElement;
+      observer.observe(element);
     });
 
     return () => {

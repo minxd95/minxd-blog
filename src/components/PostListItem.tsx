@@ -25,7 +25,7 @@ const PostListItem = ({
         <span tw="text-[32px] font-bold">{title}</span>
         <div tw="my-4 text-[14px]">
           <span tw="font-medium">{author}</span>
-          <span tw="text-darkGrey">&nbsp;· {date}</span>
+          <span tw="text-gray-300">&nbsp;· {date}</span>
         </div>
         <span>{excerpt}</span>
       </Link>

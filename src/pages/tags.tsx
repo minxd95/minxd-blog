@@ -12,10 +12,8 @@ const TagsPage = ({ data }: PageProps<Queries.TagsPageQuery>) => {
     selectedTag = queryString.parse(location.search).filter as string;
   }
 
-  const totalTagCount = data.tags.group.reduce(
-    (sum, current) => sum + current.totalCount,
-    0
-  );
+  const totalTagCount = data.tags.group.length;
+
   const {
     posts: { nodes: posts },
     tags,

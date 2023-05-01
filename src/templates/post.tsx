@@ -16,13 +16,14 @@ import "twin.macro";
 import TTableOfContents from "@/types/TTableOfContents";
 import Comment from "@/components/Comment";
 import Tag from "@/components/Tag";
+import PostNavigator from "@/components/PostNavigator";
+import TPostPageContext from "@/types/TPostPageContext";
 
 const PostTemplate = ({
   data,
   children,
-}: PageProps<Queries.PostTemplateQuery>) => {
-  console.log("data", data);
-  console.log("children", children);
+  pageContext,
+}: PageProps<Queries.PostTemplateQuery, TPostPageContext>) => {
   return (
     <Layout>
       <TableOfContents
@@ -83,8 +84,10 @@ const PostTemplate = ({
             </div>
           </div>
         </div>
-        {/* todo: next/prev post */}
-        {/* <PostNavigator /> */}
+        <PostNavigator
+          previousPost={pageContext.previousPost}
+          nextPost={pageContext.nextPost}
+        />
         {/* comments */}
         <div tw="border-t border-solid border-gray-200">
           <div tw="mt-10 mb-14 flex justify-center">

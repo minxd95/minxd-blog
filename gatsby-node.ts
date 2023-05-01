@@ -1,6 +1,6 @@
 import { CreatePagesArgs } from "gatsby";
 import path from "path";
-import kebabCase from "lodash/kebabCase";
+import TPostPageContext from "@/types/TPostPageContext";
 
 exports.createPages = async ({
   actions,
@@ -9,15 +9,17 @@ exports.createPages = async ({
 }: CreatePagesArgs) => {
   const { createPage } = actions;
 
-  const postTemplate = path.resolve("src/templates/post.tsx");
-
   const result = await graphql<Queries.PostsQuery>(`
     query Posts {
-      posts: allMdx {
+      posts: allMdx(sort: { frontmatter: { date: DESC } }) {
         nodes {
+          id
           frontmatter {
             title
             slug
+          }
+          internal {
+            contentFilePath
           }
         }
       }
@@ -35,16 +37,25 @@ exports.createPages = async ({
 
   // Make tag pages
   posts.forEach((post, idx, data) => {
-    const previousPost = idx - 1 >= 0 ? data[idx - 1] : null;
-    const nextPost = idx < data.length - 1 ? data[idx + 1] : null;
+    if (!post.frontmatter || !post.internal) return;
 
+    const previousPost = idx - 1 >= 0 ? data[idx - 1].frontmatter : null;
+    const nextPost = idx < data.length - 1 ? data[idx + 1].frontmatter : null;
+
+    const content = path.resolve(`${post.internal.contentFilePath}`);
+    const postTemplate = path.resolve(
+      `src/templates/post.tsx?__contentFilePath=${content}`
+    );
+
+    const context: TPostPageContext = {
+      id: post.id,
+      previousPost,
+      nextPost,
+    };
     createPage({
-      path: `/${post.frontmatter?.slug}`,
+      path: `/${post.frontmatter.slug}`,
       component: postTemplate,
-      context: {
-        previousPost,
-        nextPost,
-      },
+      context,
     });
   });
 };

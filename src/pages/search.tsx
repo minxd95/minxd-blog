@@ -1,12 +1,15 @@
 import Layout from "@/components/Layout";
 import PostListItem from "@/components/PostListItem";
 import SEO from "@/components/SEO";
-import Tag from "@/components/Tag";
 import { mdiMagnify } from "@mdi/js";
 import Icon from "@mdi/react";
-import { graphql, Link, PageProps } from "gatsby";
-import queryString from "query-string";
-import { ChangeEventHandler, FocusEventHandler, useState } from "react";
+import { graphql, PageProps } from "gatsby";
+import {
+  ChangeEventHandler,
+  FocusEventHandler,
+  useEffect,
+  useState,
+} from "react";
 import "twin.macro";
 import tw from "twin.macro";
 
@@ -18,7 +21,7 @@ const SearchPage = ({ data }: PageProps<Queries.SearchPageQuery>) => {
     allMdx: { nodes: posts },
   } = data;
 
-  const totalPageCount = posts.length;
+  const [filteredList, setFilteredList] = useState(posts);
 
   const handleFocus: FocusEventHandler<HTMLInputElement> = () =>
     setIsFocused(true);
@@ -27,11 +30,31 @@ const SearchPage = ({ data }: PageProps<Queries.SearchPageQuery>) => {
   const handleChange: ChangeEventHandler<HTMLInputElement> = (e) =>
     setFilter(e.target.value);
 
+  useEffect(() => {
+    const debounce = setTimeout(() => {
+      setFilteredList(
+        posts.filter((post) => {
+          const lowerCaseFilter = filter.toLowerCase();
+          const lowerCaseBody = post.body?.toLowerCase() || "";
+          const lowerCaseTitle = post.frontmatter?.title?.toLowerCase() || "";
+          if (lowerCaseTitle.includes(lowerCaseFilter)) return true;
+          else if (lowerCaseBody.includes(lowerCaseFilter)) return true;
+          else return false;
+        })
+      );
+    }, 250);
+
+    return () => clearTimeout(debounce);
+  }, [filter]);
+
   return (
     <Layout>
       <div tw="py-12">
         {/* title */}
-        <span tw="text-2xl font-bold">총 {totalPageCount}개의 게시글</span>
+        <span tw="text-2xl font-bold">
+          {`${filter ? `"${filter}" 이(가) 포함된 ` : `총`}`}{" "}
+          {filteredList.length}개의 포스트
+        </span>
       </div>
       <div tw="h-12 flex justify-center items-center relative">
         <Icon
@@ -57,26 +80,17 @@ const SearchPage = ({ data }: PageProps<Queries.SearchPageQuery>) => {
       </div>
       <div tw="flex flex-wrap gap-x-2.5 gap-y-2">{/* search bar */}</div>
       <ul tw="mb-20">
-        {posts
-          .filter((post) => {
-            const lowerCaseFilter = filter.toLowerCase();
-            const lowerCaseBody = post.body?.toLowerCase() || "";
-            const lowerCaseTitle = post.frontmatter?.title?.toLowerCase() || "";
-            if (lowerCaseTitle.includes(lowerCaseFilter)) return true;
-            else if (lowerCaseBody.includes(lowerCaseFilter)) return true;
-            else return false;
-          })
-          .map((post) => (
-            <PostListItem
-              key={post.id}
-              title={post.frontmatter?.title}
-              date={post.frontmatter?.date}
-              author={post.frontmatter?.author}
-              slug={post.frontmatter?.slug}
-              excerpt={post.excerpt}
-              tags={[...(post.frontmatter?.tags || [])]}
-            />
-          ))}
+        {filteredList.map((post) => (
+          <PostListItem
+            key={post.id}
+            title={post.frontmatter?.title}
+            date={post.frontmatter?.date}
+            author={post.frontmatter?.author}
+            slug={post.frontmatter?.slug}
+            excerpt={post.excerpt}
+            tags={[...(post.frontmatter?.tags || [])]}
+          />
+        ))}
       </ul>
     </Layout>
   );
